@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	namespace:命名空间，用来区分同名的sql。
+	id:在同一个文件里面唯一。
+	parameterType:参数类型。
+	resultType:返回的结果类型。
+	#{ename}: ename是Emp的属性(mybatis
+	会利用反射机制读取emp对象的属性值)。
+	注意：
+		如果使用Mapper映射器，namespace
+		必须带Mapper接口的完整的名称。
+ -->
+<mapper namespace="cloudnote.dao.NoteDao">
+	<insert id="createNote" parameterType="cloudnote.entity.Note">
+		insert into cn_note(cn_note_id,cn_note_title,cn_user_id,cn_note_status_id,
+		cn_notebook_id,cn_note_create_time,cn_note_last_modify_time)
+		values(#{cn_note_id},#{cn_note_title},#{cn_user_id},#{cn_note_status_id},
+		#{cn_notebook_id},#{cn_note_create_time},#{cn_note_last_modify_time});		
+	</insert>
+	<select id="findNote" resultType="cloudnote.entity.Note" parameterType="string">
+		select	cn_note_id,cn_note_title,cn_note_status_id
+		 from cn_note where cn_notebook_id=#{id} and cn_note_status_id not in ("2");	
+	</select>
+	<select id="findByNoteId" resultType="cloudnote.entity.Note" parameterType="string">
+		select	cn_note_id,cn_note_body,cn_note_title from cn_note where cn_note_id=#{noteId};
+	</select>
+	<select id="findNoteText" resultType="cloudnote.entity.Note" parameterType="string">
+		select cn_note_title,cn_note_body from cn_note where cn_note_id=#{id};
+	</select>
+	<update id="saveNote" parameterType="cloudnote.entity.Note">
+		update cn_note set cn_note_title=#{cn_note_title},
+		cn_note_body=#{cn_note_body},
+		cn_note_last_modify_time=#{cn_note_last_modify_time} where cn_note_id=#{cn_note_id};
+	</update>
+	<update id="moveNote" parameterType="cloudnote.entity.Note">
+		update cn_note set cn_notebook_id=#{cn_notebook_id} where cn_note_id=#{cn_note_id};
+	</update>
+	<update id="changeNoteStatus" parameterType="cloudnote.entity.Note">
+		update cn_note set cn_note_status_id = #{cn_note_status_id} where cn_note_id=#{cn_note_id};
+	</update>
+	<select id="findSpecialNote" parameterType="string" resultType="cloudnote.entity.Note">
+		select cn_note_id,cn_note_title from cn_note where cn_note_status_id=#{status};
+	</select>
+	<delete id="deleteNote" parameterType="string">
+		delete from cn_note where cn_note_id=#{id};
+	</delete>
+	<delete id="replayNote" parameterType="cloudnote.entity.Note">
+		update cn_note set cn_notebook_id=#{cn_notebook_id} ,cn_note_status_id="1" where cn_note_id=#{cn_note_id};
+	</delete>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	namespace:命名空间，用来区分同名的sql。
+	id:在同一个文件里面唯一。
+	parameterType:参数类型。
+	resultType:返回的结果类型。
+	#{ename}: ename是Emp的属性(mybatis
+	会利用反射机制读取emp对象的属性值)。
+	注意：
+		如果使用Mapper映射器，namespace
+		必须带Mapper接口的完整的名称。
+ -->
+<mapper namespace="cloudnote.dao.ProDao">
+	<select id="findProvince"  parameterType="map"   resultType="cloudnote.entity.Pro">
+		select region_id ,region_name from  region where parent_id=#{parent_id} and region_id not in (33,34);
+	</select>
+</mapper>

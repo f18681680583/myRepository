@@ -1,0 +1,169 @@
+<div class="modal fade in" id="modalBasic_5" tabindex="-1" role="dialog"
+	aria-labelledby="modalBasicLabel" aria-hidden="false">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">×</button>
+				<h4 class="modal-title" id="modalBasicLabel_5">更改头像</h4>
+			</div>
+			<div class="setcont dediv">
+				<div class="setimg clearfloat">
+					<div class="imgleft" id="jcropdiv">
+						<div class="cacheimg" style="display: none;">
+							<img src="">
+						</div>
+						<p class="addimg">只支持JPG、PNG，大小不超过1M</p>
+						<input type="button" value="选择本地图片" onclick="doUpload()">
+						<input class="reimg" type="button" value="更换图片" onclick="reimgp()"
+							style="display: none;">
+					</div>
+					<div class="imgright">
+						<div class="previewimg">
+							<div id="preview-pane">
+								<div class="preview-container">
+									<img class="jcrop-preview" src="" alt="">
+								</div>
+							</div>
+						</div>
+						<p>头像预览</p>
+						<input type="button" value="确认上传头像" onclick="queren()">
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style>
+.clear {
+	clear: both
+}
+.modal-content {
+	width: 610px;
+}
+.setimg .clearfloat {
+	overflow: hidden;
+	zoom: 1;
+}
+
+.setcont .setimg {
+	background-color: #fbfbfb;
+	padding: 30px 30px;
+}
+
+.setcont .imgleft {
+	text-align: center;
+	float: left; 
+	width: 305px;
+	height: 305px;
+	background-color: #eee;
+	border: 1px solid #ddd;
+	margin-top:0px;
+	margin-left: 0px;
+}
+
+.setcont .imgleft img {
+	width: 305px;
+	height: 305px;
+}
+
+.setcont .imgleft>p {
+	margin: 100px 0;
+	color: #bbb;
+}
+
+.setcont .imgleft>span {
+	cursor: pointer;
+	display: block;
+	margin: 0 auto;
+	width: 80px;
+	height: 80px;
+	line-height: 66px;
+	font-weight: bold;
+	font-size: 80px;
+	color: #31b0d5;
+	background-color: #fff;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.setcont .imgleft>span:hover {
+	background-color: #31b0d5;
+	color: #fff;
+}
+
+.setcont .imgleft>input {
+	cursor: pointer;
+	margin-top: 10px;
+	width: 100px;
+	height: 35px;
+	line-height: 30px;
+	background-color: #31b0d5;
+	border-radius: 3px;
+	color: #fff;
+	border: 1px solid #31b0d5;
+}
+
+.setcont .imgleft>input:hover {
+	background-color: #5bc0de;
+}
+
+.setcont .imgright {
+	float: left;
+	margin-left: 30px;
+	text-align: center;
+}
+
+.previewimg {
+	width: 210px;
+	height: 210px;
+	background-color: #eee;
+	border: 1px solid #ddd;
+}
+
+.jcrop-holder #preview-pane {
+	position: absolute;
+	left: 419px;
+	top: 4px;
+}
+
+.preview-container {
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+}
+
+.setcont .imgright>p {
+	margin: 6px 0;
+}
+
+.setcont .imgright>input {
+	cursor: pointer;
+	width: 100px;
+	height: 35px;
+	line-height: 30px;
+	background-color: #2ecc71;
+	border-radius: 3px;
+	color: #fff;
+	border: 1px solid #2ecc71;
+}
+
+.setcont .imgright>input:hover {
+	background-color: #4dd586;
+}
+
+.setcont .imgmin {
+	margin-left: 60px;
+	float: left;
+	text-align: center;
+}
+
+.setcont .imgmin>div {
+	background-color: #eee;
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ddd;
+	margin-bottom: 8px;
+}
+</style>

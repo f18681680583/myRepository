@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 
+	namespace:命名空间，用来区分同名的sql。
+	id:在同一个文件里面唯一。
+	parameterType:参数类型。
+	resultType:返回的结果类型。
+	#{ename}: ename是Emp的属性(mybatis
+	会利用反射机制读取emp对象的属性值)。
+	注意：
+		如果使用Mapper映射器，namespace
+		必须带Mapper接口的完整的名称。
+ -->
+<mapper namespace="cloudnote.dao.UserDao">
+	<select id="findByName" resultType="cloudnote.entity.User" parameterType="string">
+		select * from cn_user where cn_user_name=#{name};	
+	</select>
+	<select id="findById" resultType="cloudnote.entity.User" parameterType="string">
+		select * from cn_user where cn_user_id=#{id};	
+	</select>
+	<select id="getIdByName" resultType="string" parameterType="string">
+		select cn_user_id from cn_user where cn_user_name=#{name};	
+	</select>
+	<insert id="registUser" parameterType="cloudnote.entity.User">
+		insert into cn_user (cn_user_id,cn_user_name,cn_user_password,cn_user_token,cn_user_nick)
+		 values(#{cn_user_id},#{cn_user_name},#{cn_user_password}
+		,#{cn_user_token},#{cn_user_nick});
+	</insert>
+	<update id="changeUserInfo" parameterType="cloudnote.entity.User">
+		update cn_user set cn_user_password=#{cn_user_password} ,
+		where cn_user_id=#{cn_user_id};
+	</update>
+	<update id="change" parameterType="cloudnote.entity.ChangeInfo">
+		update cn_user set cn_user_nick=#{nick},
+		cn_user_borth=#{borth},
+		cn_user_province=#{pro},
+		cn_user_sign=#{sign},
+		cn_user_sex=#{sex},
+		cn_user_city=#{city},
+		where cn_user_id=#{cn_user_id};
+	</update>
+	
+</mapper>

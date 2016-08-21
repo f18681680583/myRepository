@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+ <mapper namespace="cloudnote.dao.ShareDao">
+ 	<insert id="shareNote" parameterType="cloudnote.entity.ShareNote">
+ 		insert into cn_share(cn_share_id,cn_share_title,cn_share_body,cn_note_id) 
+ 		values(#{cn_share_id},#{cn_share_title},#{cn_share_body},#{cn_note_id});
+ 	</insert>
+ 	<delete id="deleteShare" parameterType="string">
+ 		delete from cn_share where cn_note_id=#{id};
+ 	</delete>
+ 	<select id="searchNote" parameterType="map" resultType="cloudnote.entity.ShareNote">
+ 		SELECT cn_share_id,cn_share_title FROM cn_share WHERE cn_share_title LIKE #{keyword} limit #{start} ,#{length};
+ 	</select>
+ 	<select id="findShareBody" parameterType="string" resultType="cloudnote.entity.ShareNote">
+ 		SELECT cn_share_body,cn_share_title FROM cn_share WHERE cn_share_id=#{shareId};
+ 	</select>
+ 	<!-- 组合查询 -->
+ 	
+ </mapper>
